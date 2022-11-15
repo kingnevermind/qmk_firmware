@@ -24,28 +24,10 @@ enum planck_layers {
     _LOWER,
     _RAISE,
     _ADJUST,
-    _LAYER4,
-    _LAYER5,
+    _FUNCTION,
+    _ARROWS,
+    _SUBLIME,
 };
-
-// enum planck_layers {
-//   _QWERTY,
-//   _COLEMAK,
-//   _DVORAK,
-//   _LOWER,
-//   _RAISE,
-//   _PLOVER,
-//   _ADJUST
-// };
-
-// enum planck_keycodes {
-//   QWERTY = SAFE_RANGE,
-//   COLEMAK,
-//   DVORAK,
-//   PLOVER,
-//   BACKLIT,
-//   EXT_PLV
-// };
 
 
 enum tap_dance_codes {
@@ -54,9 +36,6 @@ enum tap_dance_codes {
   DANCE_2,
   DANCE_3,
 };
-
-
-
 
 
 
@@ -87,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // +-----------------------------------------------------------------------------------+
     // | ESC  |      |      |      |      |      |  §   |  °   |  $   |  €   |      | BSPC |
     // |-----------------------------------------------------------------------------------|
-    // | TAB  |  @   |      |      |      |      |      |  !   |  ?   |  #   |      | ENT  |
+    // | TAB  |  @   |      |      |      |      |      |  !   |  ?   |  #   |  \   | ENT  |
     // |-----------------------------------------------------------------------------------|
     // | LSFT |  ¨   |      |      |      |      |  µ   |  ~   |  &   |  |   |  UP  | GRV  |
     // |-----------------------------------------------------------------------------------|
@@ -95,9 +74,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // +-----------------------------------------------------------------------------------+
 
     [_LOWER] = LAYOUT_planck_grid(
-        KC_ESC,  KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,  FR_SECT, FR_DEG,  FR_DLR,    FR_EURO, KC_NO, KC_BSPC,
-        KC_TAB,  FR_AT,   KC_NO,   KC_NO,   KC_NO, KC_NO,  KC_NO,   FR_EXLM, FR_QUES,   FR_HASH, KC_NO, KC_ENT,
-        KC_LSFT, FR_DIAE, KC_NO,   KC_NO,   KC_NO, KC_NO,  FR_MICR, FR_TILD, FR_AMPR,   FR_PIPE, KC_UP, FR_GRV,
+        KC_ESC,  KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,  FR_SECT, FR_DEG,  FR_DLR,    FR_EURO, KC_NO,   KC_BSPC,
+        KC_TAB,  FR_AT,   KC_NO,   KC_NO,   KC_NO, KC_NO,  KC_NO,   FR_EXLM, FR_QUES,   FR_HASH, FR_BSLS, KC_ENT,
+        KC_LSFT, FR_DIAE, KC_NO,   KC_NO,   KC_NO, KC_NO,  FR_MICR, FR_TILD, FR_AMPR,   FR_PIPE, KC_UP,   FR_GRV,
         KC_NO,   KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_SPC,  RAISE,   KC_DELETE, KC_LEFT, KC_DOWN, KC_RGHT),
 
 
@@ -115,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_RAISE] = LAYOUT_planck_grid(
         KC_ESC,      FR_COLN, FR_QUOT,     FR_DQUO,        KC_KP_PLUS,  KC_NO,          KC_NO,          KC_KP_7,  KC_KP_8,   KC_KP_9, FR_EGRV,   KC_BSPC,
         KC_TAB,      FR_AGRV, KC_KP_MINUS, KC_KP_ASTERISK, KC_KP_DOT,   KC_EQUAL,       FR_UNDS,        KC_KP_4,  KC_KP_5,   KC_KP_6, KC_KP_0,   KC_ENT,
-        KC_CAPSLOCK, FR_CIRC, FR_UGRV,     FR_CCED,        TD(DANCE_1), TD(DANCE_2),    TD(DANCE_3),    KC_KP_1,  KC_KP_2,   KC_KP_3, KC_KP_DOT, FR_PERC,
+        KC_CAPSLOCK, FR_CIRC, FR_UGRV,     FR_CCED,        KC_KP_SLASH, TD(DANCE_2),    TD(DANCE_3),    KC_KP_1,  KC_KP_2,   KC_KP_3, KC_KP_DOT, FR_PERC,
         KC_NO,       KC_LCTL, KC_LALT,     KC_LGUI,        LOWER,       KC_SPC,         KC_SPC,         RAISE,    KC_DELETE, KC_NO,   KC_NO,     KC_NO),
 
 
@@ -148,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // |      | LCTL | LALT | LGUI |      |      |      |      |      |  <<  | VOL- |  >>  |
     // +-----------------------------------------------------------------------------------+
 
-    [_LAYER4] = LAYOUT_planck_grid(
+    [_FUNCTION] = LAYOUT_planck_grid(
         KC_NO,   KC_F7,   KC_F8,   KC_F9, KC_F12, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,             KC_PSCREEN,
         KC_NO,   KC_F4,   KC_F5,   KC_F6, KC_F11, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,             KC_NO,
         KC_LSFT, KC_F1,   KC_F2,   KC_F3, KC_F10, KC_NO, KC_NO, KC_NO, KC_NO, KC_MEDIA_PLAY_PAUSE, KC_AUDIO_VOL_UP,   KC_AUDIO_MUTE,
@@ -166,13 +145,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // |      |      |      |      |      | SPC  | SPC  | LCTL |      |      |      |      |
     // +-----------------------------------------------------------------------------------+
 
-    [_LAYER5] = LAYOUT_planck_grid(
+    [_ARROWS] = LAYOUT_planck_grid(
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_NO,   KC_PGUP,   KC_HOME,       KC_UP,        KC_END,          LSFT(KC_F10),     KC_BSPC,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_LSHIFT, KC_NO,   KC_PGDOWN, KC_LEFT,       KC_DOWN,      KC_RIGHT,        LCTL(LSFT(KC_T)), KC_ENT,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_LALT,   KC_NO,   KC_F2,     LCTL(KC_PGUP), KC_NO,        LCTL(KC_PGDOWN), LCTL(LSFT(KC_N)), LCTL(LSFT(FR_W)),
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_SPC,  KC_SPC,    KC_LCTRL,      KC_NO,        KC_NO,           KC_NO,            KC_NO),
 
+
+
+    // +-----------------------------------------------------------------------------------+
+    // |      |      |      |      |      |      |      | +!1  | +!2  | +!3  |      |      |
+    // |-----------------------------------------------------------------------------------|
+    // |      |      |      |      |      |      |      |      |      |      |      |      |
+    // |-----------------------------------------------------------------------------------|
+    // |      |      |      |      |      |      |      |      |      |      |      |      |
+    // |-----------------------------------------------------------------------------------|
+    // |      |      |      |      |      |      |      |      |      |      |      |      |
+    // +-----------------------------------------------------------------------------------+
+
+    [_SUBLIME] = LAYOUT_planck_grid(
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, LALT(LSFT(KC_KP_1)), LALT(LSFT(KC_KP_2)), LALT(LSFT(KC_KP_3)), KC_NO, KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,               KC_NO, KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,               KC_NO, KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,               KC_NO, KC_NO),
 };
+
+
+
+
 
 
 
@@ -232,7 +232,7 @@ uint8_t dance_step(qk_tap_dance_state_t *state) {
 
 
 // /////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////
+// TAP DANSE 0 : Doule K
 // /////////////////////////////////////////////////////////////////////////////
 
 
@@ -271,51 +271,51 @@ void dance_0_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 
+// // /////////////////////////////////////////////////////////////////////////////
+// //
+// // /////////////////////////////////////////////////////////////////////////////
+
+
+// void on_dance_1(qk_tap_dance_state_t *state, void *user_data);
+// void dance_1_finished(qk_tap_dance_state_t *state, void *user_data);
+// void dance_1_reset(qk_tap_dance_state_t *state, void *user_data);
+//
+// void on_dance_1(qk_tap_dance_state_t *state, void *user_data) {
+//     if(state->count == 3) {
+//         tap_code16(KC_KP_SLASH);
+//         tap_code16(KC_KP_SLASH);
+//         tap_code16(KC_KP_SLASH);
+//     }
+//     if(state->count > 3) {
+//         tap_code16(KC_KP_SLASH);
+//     }
+// }
+//
+// void dance_1_finished(qk_tap_dance_state_t *state, void *user_data) {
+//     dance_state[1].step = dance_step(state);
+//     switch (dance_state[1].step) {
+//         case SINGLE_TAP: register_code16(KC_KP_SLASH); break;
+//         case DOUBLE_TAP: register_code16(KC_KP_SLASH); register_code16(KC_KP_SLASH); break;
+//         case DOUBLE_HOLD: register_code16(RALT(KC_8)); break;
+//         case DOUBLE_SINGLE_TAP: tap_code16(KC_KP_SLASH); register_code16(KC_KP_SLASH);
+//     }
+// }
+//
+// void dance_1_reset(qk_tap_dance_state_t *state, void *user_data) {
+//     wait_ms(10);
+//     switch (dance_state[1].step) {
+//         case SINGLE_TAP: unregister_code16(KC_KP_SLASH); break;
+//         case DOUBLE_TAP: unregister_code16(KC_KP_SLASH); break;
+//         case DOUBLE_HOLD: unregister_code16(RALT(KC_8)); break;
+//         case DOUBLE_SINGLE_TAP: unregister_code16(KC_KP_SLASH); break;
+//     }
+//     dance_state[1].step = 0;
+// }
+
+
+
 // /////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////
-
-
-void on_dance_1(qk_tap_dance_state_t *state, void *user_data);
-void dance_1_finished(qk_tap_dance_state_t *state, void *user_data);
-void dance_1_reset(qk_tap_dance_state_t *state, void *user_data);
-
-void on_dance_1(qk_tap_dance_state_t *state, void *user_data) {
-    if(state->count == 3) {
-        tap_code16(KC_KP_SLASH);
-        tap_code16(KC_KP_SLASH);
-        tap_code16(KC_KP_SLASH);
-    }
-    if(state->count > 3) {
-        tap_code16(KC_KP_SLASH);
-    }
-}
-
-void dance_1_finished(qk_tap_dance_state_t *state, void *user_data) {
-    dance_state[1].step = dance_step(state);
-    switch (dance_state[1].step) {
-        case SINGLE_TAP: register_code16(KC_KP_SLASH); break;
-        case DOUBLE_TAP: register_code16(KC_KP_SLASH); register_code16(KC_KP_SLASH); break;
-        case DOUBLE_HOLD: register_code16(RALT(KC_8)); break;
-        case DOUBLE_SINGLE_TAP: tap_code16(KC_KP_SLASH); register_code16(KC_KP_SLASH);
-    }
-}
-
-void dance_1_reset(qk_tap_dance_state_t *state, void *user_data) {
-    wait_ms(10);
-    switch (dance_state[1].step) {
-        case SINGLE_TAP: unregister_code16(KC_KP_SLASH); break;
-        case DOUBLE_TAP: unregister_code16(KC_KP_SLASH); break;
-        case DOUBLE_HOLD: unregister_code16(RALT(KC_8)); break;
-        case DOUBLE_SINGLE_TAP: unregister_code16(KC_KP_SLASH); break;
-    }
-    dance_state[1].step = 0;
-}
-
-
-
-// /////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////
+// TAP DANSE 2 : Opening Brackets
 // /////////////////////////////////////////////////////////////////////////////
 
 
@@ -361,7 +361,7 @@ void dance_2_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 
 // /////////////////////////////////////////////////////////////////////////////
-// /////////////////////////////////////////////////////////////////////////////
+// TAP DANSE 3 : Closing Brackets
 // /////////////////////////////////////////////////////////////////////////////
 
 
@@ -406,9 +406,17 @@ void dance_3_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 
 
+
+
+
+
+
+
+
+
 qk_tap_dance_action_t tap_dance_actions[] = {
         [DANCE_0] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_0, dance_0_finished, dance_0_reset),
-        [DANCE_1] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
+        // [DANCE_1] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
         [DANCE_2] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_2, dance_2_finished, dance_2_reset),
         [DANCE_3] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_3, dance_3_finished, dance_3_reset),
         // [DANCE_4] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_4, dance_4_finished, dance_4_reset),
