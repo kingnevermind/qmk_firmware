@@ -30,12 +30,27 @@ enum planck_layers {
 };
 
 
+enum planck_keycodes {
+  ST_MACRO_0 = SAFE_RANGE,
+  ST_MACRO_1,
+  ST_MACRO_2,
+  ST_MACRO_3,
+  ST_MACRO_4,
+  ST_MACRO_5,
+  ST_MACRO_6,
+  ST_MACRO_7,
+  ST_MACRO_8,
+  ST_MACRO_9,
+  ST_MACRO_10,
+  ST_MACRO_11,
+};
+
+
 enum tap_dance_codes {
   DANCE_0,
   DANCE_1,
   DANCE_2,
   DANCE_3,
-
   DANCE_11,
   DANCE_12,
   DANCE_13,
@@ -74,20 +89,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
     // +-----------------------------------------------------------------------------------+
-    // | ESC  |      |      |      |      |      |  §   |  °   |  $   |  €   |      | BSPC |
+    // | ESC  |      |      | date | date |      |  §   |  °   |  $   |  €   |  É   | BSPC |
     // |-----------------------------------------------------------------------------------|
-    // | TAB  |  @   |      |      |      |      |      |  !   |  ?   |  #   |  \   | ENT  |
+    // | TAB  |  @   |      |pastry|  ^Z  |      |  ±   |  !   |  ?   |  #   |  \   | ENT  |
     // |-----------------------------------------------------------------------------------|
-    // | LSFT |  ¨   |      |      |      |      |  µ   |  ~   |  &   |  |   |  UP  | GRV  |
+    // | LSFT |  ¨   |      |  Ç   |  ^Y  |      |  µ   |  ~   |  &   |  |   |  UP  | GRV  |
     // |-----------------------------------------------------------------------------------|
     // |      | LCTL | LALT | LGUI | LOW  | SPC  | SPC  | RAIS | DEL  | LEFT | DOWN | RGHT |
     // +-----------------------------------------------------------------------------------+
 
     [_LOWER] = LAYOUT_planck_grid(
-        KC_ESC,  KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,  FR_SECT, FR_DEG,  FR_DLR,    FR_EURO, KC_NO,   KC_BSPC,
-        KC_TAB,  FR_AT,   KC_NO,   KC_NO,   KC_NO, KC_NO,  KC_NO,   FR_EXLM, FR_QUES,   FR_HASH, FR_BSLS, KC_ENT,
-        KC_LSFT, FR_DIAE, KC_NO,   KC_NO,   KC_NO, KC_NO,  FR_MICR, FR_TILD, FR_AMPR,   FR_PIPE, KC_UP,   FR_GRV,
-        KC_NO,   KC_LCTL, KC_LALT, KC_LGUI, LOWER, KC_SPC, KC_SPC,  RAISE,   KC_DELETE, KC_LEFT, KC_DOWN, KC_RGHT),
+        KC_ESC,  KC_NO,   KC_NO,   ST_MACRO_0,  ST_MACRO_1, KC_NO,  FR_SECT,    FR_DEG,     FR_DLR,     FR_EURO,    ST_MACRO_2, KC_BSPC,
+        KC_TAB,  FR_AT,   KC_NO,   ST_MACRO_3,  LCTL(FR_Z), KC_NO,  ST_MACRO_4, FR_EXLM,    FR_QUES,    FR_HASH,    FR_BSLS,    KC_ENT,
+        KC_LSFT, FR_DIAE, KC_NO,   ST_MACRO_5,  LCTL(KC_Y), KC_NO,  FR_MICR,    FR_TILD,    FR_AMPR,    FR_PIPE,    KC_UP,      FR_GRV,
+        KC_NO,   KC_LCTL, KC_LALT, KC_LGUI,     LOWER,      KC_SPC, KC_SPC,     RAISE,      KC_DELETE,  KC_LEFT,    KC_DOWN,    KC_RGHT),
 
 
 
@@ -166,7 +181,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // +-----------------------------------------------------------------------------------+
     // |      |      |      |      |      |      |      | +!1  | +!2  | +!3  |      |      |
     // |-----------------------------------------------------------------------------------|
-    // |      |      |      |      |      |      |      |      |      |      |      |      |
+    // |      |      |      |      |      |      |      |fold 1|fold 2|fold 3|fold 0|      |
     // |-----------------------------------------------------------------------------------|
     // |      |      |      |      |      |      |      |      |      |      |      |      |
     // |-----------------------------------------------------------------------------------|
@@ -174,10 +189,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // +-----------------------------------------------------------------------------------+
 
     [_SUBLIME] = LAYOUT_planck_grid(
-          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, LSFT(LALT(KC_KP_1)), LSFT(LALT(KC_KP_2)), LSFT(LALT(KC_KP_3)), KC_NO, KC_NO,
-          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,               KC_NO, KC_NO,
-          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,               KC_NO, KC_NO,
-          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,               KC_NO, KC_NO),
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, LSFT(LALT(KC_1)),    LSFT(LALT(KC_2)),    LSFT(LALT(KC_3)),      KC_NO,          KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, ST_MACRO_8,          ST_MACRO_9,         ST_MACRO_10,            ST_MACRO_11,    KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,                 KC_NO,          KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,                 KC_NO,          KC_NO),
 };
 
 
@@ -200,6 +215,89 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 
 
+// /////////////////////////////////////////////////////////////////////////////
+// MACROS
+// /////////////////////////////////////////////////////////////////////////////
+
+
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case ST_MACRO_0:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_SCOLON) SS_DELAY(100) SS_TAP(X_D) SS_DELAY(100) SS_TAP(X_H) SS_DELAY(100) SS_TAP(X_SCOLON));
+
+    }
+    break;
+    case ST_MACRO_1:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_SCOLON) SS_DELAY(100) SS_TAP(X_D) SS_DELAY(100) SS_TAP(X_8) SS_DELAY(100) SS_TAP(X_8));
+
+    }
+    break;
+    case ST_MACRO_2:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_4) SS_TAP(X_KP_4) ));
+
+    }
+    break;
+    case ST_MACRO_3:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_LCTL(SS_TAP(X_N))) SS_DELAY(100) SS_TAP(X_KP_0)  SS_DELAY(100) SS_TAP(X_ENTER));
+
+    }
+    break;
+    case ST_MACRO_4:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_KP_2) SS_TAP(X_KP_4) SS_TAP(X_KP_1) ));
+
+    }
+    break;
+    case ST_MACRO_5:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_2) SS_TAP(X_KP_8) ));
+
+    }
+    break;
+    // case ST_MACRO_6:
+    // if (record->event.pressed) {
+    //   SEND_STRING(SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_ENTER));
+
+    // }
+    // break;
+    // case ST_MACRO_7:
+    // if (record->event.pressed) {
+    //   SEND_STRING(SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_ENTER));
+
+    // }
+    // break;
+    case ST_MACRO_8:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LCTL(SS_TAP(X_K)) SS_DELAY(100) SS_LCTL(SS_TAP(X_KP_1)));
+
+    }
+    break;
+    case ST_MACRO_9:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LCTL(SS_TAP(X_K)) SS_DELAY(100) SS_LCTL(SS_TAP(X_KP_2)));
+
+    }
+    break;
+    case ST_MACRO_10:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LCTL(SS_TAP(X_K)) SS_DELAY(100) SS_LCTL(SS_TAP(X_KP_3)));
+
+    }
+    break;
+    case ST_MACRO_11:
+    if (record->event.pressed) {
+      SEND_STRING(SS_LCTL(SS_TAP(X_K)) SS_DELAY(100) SS_LCTL(SS_TAP(X_KP_0)));
+
+    }
+    break;
+  }
+  return true;
+}
 
 
 
@@ -283,7 +381,7 @@ void dance_0_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 
 // /////////////////////////////////////////////////////////////////////////////
-// TAP DANSE 1 : 
+// TAP DANSE 1 :
 // /////////////////////////////////////////////////////////////////////////////
 
 
