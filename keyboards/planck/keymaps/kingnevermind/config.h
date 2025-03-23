@@ -58,4 +58,7 @@
 #undef PREVENT_STUCK_MODIFIERS
 
 
+#define COMBO_COUNT 7
+
+
 

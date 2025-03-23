@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_planck_grid(
         KC_ESC,        FR_Q,    FR_W,    LT(5,KC_F),        LT(6,KC_P),        KC_B,   KC_J,        KC_L,              KC_U,                 KC_Y,    FR_EACU, KC_BSPC,
         KC_TAB,        FR_A,    KC_R,    KC_S,              KC_T,              KC_G,   KC_H,        KC_N,              KC_E,                 KC_I,    KC_O,    KC_ENT,
-        OSM(MOD_LSFT), FR_Z,    KC_X,    MT(MOD_LCTL,KC_C), MT(MOD_LSFT,KC_D), KC_V,   TD(DANCE_0), MT(MOD_RSFT,FR_M), MT(MOD_LCTL,FR_COMM), FR_DOT,  KC_UP,   FR_SCLN,
+        OSM(MOD_LSFT), FR_Z,    KC_X,    MT(MOD_LCTL,KC_C), MT(MOD_LSFT,KC_D), KC_V,   KC_K,        MT(MOD_RSFT,FR_M), MT(MOD_LCTL,FR_COMM), FR_DOT,  KC_UP,   FR_SCLN,
         MO(4),         KC_LCTL, KC_LALT, KC_LGUI,           LOWER,             KC_SPC, KC_SPC,      RAISE,             KC_DELETE,            KC_LEFT, KC_DOWN, KC_RGHT),
 
 
@@ -107,20 +107,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
     // +-----------------------------------------------------------------------------------+
-    // | ESC  |  :   |  '   |  "   |  +   |      |      |  7   |  8   |  9   |  è   | BSPC |
+    // | ESC  |  :   |  '   |  "   |  +   |      |      |  7  [E] 8  [F] 9   |  è   | BSPC |
     // |-----------------------------------------------------------------------------------|
-    // | TAB  |  à   |  -   |  *   |  .   |  =   |  _   | 4/D  | 5/E  | 6/F  |  0   | ENT  |
+    // | TAB  |  à   |  -   |  *   |  .   |  =   |  _   |  4  [C] 5  [D] 6   |  0   | ENT  |
     // |-----------------------------------------------------------------------------------|
-    // | CAP  |  ^   |  ù   |  ç   |  /   | <{[( | )]}> | 1/A  | 2/B  | 3/C  |  .   |  %   |
+    // | CAP  |  ^   |  ù   |  ç   |  /   | <{[( | )]}> |  1  [A] 2  [B] 3   |  .   |  %   |
     // |-----------------------------------------------------------------------------------|
     // |      | LCTL | LALT | LGUI | LOW  | SPC  | SPC  | RAIS | DEL  |      |      |      |
     // +-----------------------------------------------------------------------------------+
 
     [_RAISE] = LAYOUT_planck_grid(
-        KC_ESC,      FR_COLN, FR_QUOT,     FR_DQUO,        KC_KP_PLUS,  KC_NO,          KC_NO,          KC_KP_7,        KC_KP_8,        KC_KP_9,        FR_EGRV,   KC_BSPC,
-        KC_TAB,      FR_AGRV, KC_KP_MINUS, KC_KP_ASTERISK, KC_KP_DOT,   KC_EQUAL,       FR_UNDS,        TD(DANCE_14),   TD(DANCE_15),   TD(DANCE_16),   KC_KP_0,   KC_ENT,
-        KC_CAPSLOCK, FR_CIRC, FR_UGRV,     FR_CCED,        KC_KP_SLASH, TD(DANCE_2),    TD(DANCE_3),    TD(DANCE_11),   TD(DANCE_12),   TD(DANCE_13),   KC_KP_DOT, FR_PERC,
-        KC_NO,       KC_LCTL, KC_LALT,     KC_LGUI,        LOWER,       KC_SPC,         KC_SPC,         RAISE,          KC_DELETE,      KC_NO,          KC_NO,     KC_NO),
+        KC_ESC,      FR_COLN, FR_QUOT,     FR_DQUO,        KC_KP_PLUS,  KC_NO,          KC_NO,        KC_KP_7,  KC_KP_8,    KC_KP_9,  FR_EGRV,   KC_BSPC,
+        KC_TAB,      FR_AGRV, KC_KP_MINUS, KC_KP_ASTERISK, KC_KP_DOT,   KC_EQUAL,       FR_UNDS,      KC_KP_4,  KC_KP_5,    KC_KP_6,  KC_KP_0,   KC_ENT,
+        KC_CAPSLOCK, FR_CIRC, FR_UGRV,     FR_CCED,        KC_KP_SLASH, TD(DANCE_2),    TD(DANCE_3),  KC_KP_1,  KC_KP_2,    KC_KP_3,  KC_KP_DOT, FR_PERC,
+        KC_NO,       KC_LCTL, KC_LALT,     KC_LGUI,        LOWER,       KC_SPC,         KC_SPC,       RAISE,    KC_DELETE,  KC_NO,    KC_NO,     KC_NO),
 
 
 
@@ -189,8 +189,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // +-----------------------------------------------------------------------------------+
 
     [_SUBLIME] = LAYOUT_planck_grid(
-          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, LSFT(LALT(KC_1)),    LSFT(LALT(KC_2)),    LSFT(LALT(KC_3)),      KC_NO,          KC_NO,
-          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, ST_MACRO_8,          ST_MACRO_9,         ST_MACRO_10,            ST_MACRO_11,    KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, LSFT(LALT(KC_KP_1)), LSFT(LALT(KC_KP_2)), LSFT(LALT(KC_KP_3)),   KC_NO,          KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, ST_MACRO_8,          ST_MACRO_9,          ST_MACRO_10,           ST_MACRO_11,    KC_NO,
           KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,                 KC_NO,          KC_NO,
           KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,                 KC_NO,          KC_NO),
 };
@@ -198,6 +198,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 
+// /////////////////////////////////////////////////////////////////////////////
+// COMBOS
+// /////////////////////////////////////////////////////////////////////////////
+
+
+
+const uint16_t PROGMEM combo0[] = { KC_V, KC_K, COMBO_END};
+const uint16_t PROGMEM combo1[] = { KC_KP_1, KC_KP_2, COMBO_END};
+const uint16_t PROGMEM combo2[] = { KC_KP_4, KC_KP_5, COMBO_END};
+const uint16_t PROGMEM combo3[] = { KC_KP_2, KC_KP_3, COMBO_END};
+const uint16_t PROGMEM combo4[] = { KC_KP_5, KC_KP_6, COMBO_END};
+const uint16_t PROGMEM combo5[] = { KC_KP_7, KC_KP_8, COMBO_END};
+const uint16_t PROGMEM combo6[] = { KC_KP_8, KC_KP_9, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(combo0, LALT(LSFT(FR_SCLN))),
+    COMBO(combo1, LSFT(FR_A)),
+    COMBO(combo2, LSFT(KC_C)),
+    COMBO(combo3, LSFT(KC_B)),
+    COMBO(combo4, LSFT(KC_D)),
+    COMBO(combo5, LSFT(KC_E)),
+    COMBO(combo6, LSFT(KC_F)),
+};
 
 
 
@@ -209,8 +232,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
-
-
 
 
 
@@ -339,6 +360,7 @@ uint8_t dance_step(qk_tap_dance_state_t *state) {
 }
 
 
+#if 0
 // /////////////////////////////////////////////////////////////////////////////
 // TAP DANSE 0 : Doule K
 // /////////////////////////////////////////////////////////////////////////////
@@ -377,7 +399,7 @@ void dance_0_reset(qk_tap_dance_state_t *state, void *user_data) {
     }
     dance_state[0].step = 0;
 }
-
+#endif
 
 
 // /////////////////////////////////////////////////////////////////////////////
@@ -517,7 +539,7 @@ void dance_3_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 
-
+#if 0
 // /////////////////////////////////////////////////////////////////////////////
 // TAP DANSE 11 : 1 & A
 // /////////////////////////////////////////////////////////////////////////////
@@ -779,7 +801,7 @@ void dance_16_reset(qk_tap_dance_state_t *state, void *user_data) {
     }
     dance_state[16].step = 0;
 }
-
+#endif
 
 
 // /////////////////////////////////////////////////////////////////////////////
@@ -789,7 +811,7 @@ void dance_16_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-        [DANCE_0] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_0, dance_0_finished, dance_0_reset),
+        // [DANCE_0] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_0, dance_0_finished, dance_0_reset),
         [DANCE_1] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
         [DANCE_2] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_2, dance_2_finished, dance_2_reset),
         [DANCE_3] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_3, dance_3_finished, dance_3_reset),
@@ -800,14 +822,14 @@ qk_tap_dance_action_t tap_dance_actions[] = {
         // [DANCE_8] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_8, dance_8_finished, dance_8_reset),
         // [DANCE_9] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_9, dance_9_finished, dance_9_reset),
         // [DANCE_10] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_10, dance_10_finished, dance_10_reset),
+#if 0
         [DANCE_11] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_11, dance_11_finished, dance_11_reset),
         [DANCE_12] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_12, dance_12_finished, dance_12_reset),
         [DANCE_13] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_13, dance_13_finished, dance_13_reset),
         [DANCE_14] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_14, dance_14_finished, dance_14_reset),
         [DANCE_15] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_15, dance_15_finished, dance_15_reset),
         [DANCE_16] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_16, dance_16_finished, dance_16_reset),
-        [DANCE_16] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_16, dance_16_finished, dance_16_reset),
-        [DANCE_16] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_16, dance_16_finished, dance_16_reset),
+#endif
 };
 
 
