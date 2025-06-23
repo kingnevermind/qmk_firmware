@@ -46,3 +46,16 @@
     }, \
 }
 */
+
+
+#undef TAPPING_TERM
+#define TAPPING_TERM 200
+
+#define USB_SUSPEND_WAKEUP_DELAY 0
+
+#define IGNORE_MOD_TAP_INTERRUPT
+#undef PERMISSIVE_HOLD
+#undef PREVENT_STUCK_MODIFIERS
+
+
+
