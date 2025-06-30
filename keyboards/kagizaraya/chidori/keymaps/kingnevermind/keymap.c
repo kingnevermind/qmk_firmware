@@ -34,9 +34,10 @@ enum macro_keycodes {
     ST_MACRO_100 = SAFE_RANGE,      // macro autohotkey insert date & time
     ST_MACRO_101,                   // macro autohotkey insert date
     ST_MACRO_102,                   // insert alt code for É
-    ST_MACRO_103,                   // macro sublime pastry
+    ST_MACRO_103,                   // macro sublime pastry from 0
     ST_MACRO_104,                   // insert alt code ±
     ST_MACRO_105,                   // insert alt code Ç
+    ST_MACRO_106,                   // macro sublime pastry from 1
     ST_MACRO_600,                   // macro sublime fold level 1
     ST_MACRO_601,                   // macro sublime fold level 2
     ST_MACRO_602,                   // macro sublime fold level 3
@@ -81,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     // +-----------------------------------------+      +-----------------------------------------+
     // | ESC  |      | date | date |      |      |      |  §   |  °   |  $   |  €   |  É   | BSPC |
     // |------------------------------------------      ------------------------------------------|
-    // | TAB  |  @   |      |pastry|  ^Z  |      |      |  ±   |  !   |  ?   |  #   |  \   | ENT  |
+    // | TAB  |  @   |pastry|pastry|  ^Z  |      |      |  ±   |  !   |  ?   |  #   |  \   | ENT  |
     // |------------------------------------------      ------------------------------------------|
     // | LSFT |  ¨   |      |  Ç   |  ^Y  |      |      |  µ   |  ~   |  &   |  |   |  UP  | GRV  |
     // |------------------------------------------      ------------------------------------------|
@@ -90,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
     [_LOWER] = LAYOUT(
         KC_ESC,  KC_NO,   ST_MACRO_100, ST_MACRO_101,   KC_NO,      KC_NO,  FR_SECT,        FR_DEG,     FR_DLR,     FR_EURO,    ST_MACRO_102,   KC_BSPC,
-        KC_TAB,  FR_AT,   KC_NO,        ST_MACRO_103,   LCTL(FR_Z), KC_NO,  ST_MACRO_104,   FR_EXLM,    FR_QUES,    FR_HASH,    FR_BSLS,        KC_ENT,
+        KC_TAB,  FR_AT,   ST_MACRO_106, ST_MACRO_103,   LCTL(FR_Z), KC_NO,  ST_MACRO_104,   FR_EXLM,    FR_QUES,    FR_HASH,    FR_BSLS,        KC_ENT,
         KC_LSFT, FR_DIAE, KC_NO,        ST_MACRO_105,   LCTL(KC_Y), KC_NO,  FR_MICR,        FR_TILD,    FR_AMPR,    FR_PIPE,    KC_UP,          FR_GRV,
         KC_NO,   KC_LCTL, KC_LALT,      KC_LGUI,        MO(_LOWER), KC_SPC, KC_SPC,         MO(_RAISE), KC_DELETE,  KC_LEFT,    KC_DOWN,        KC_RGHT
     ),
@@ -293,7 +294,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
 
         case ST_MACRO_103:
-            // macro sublime pastry
+            // macro sublime pastry from 0
             if (record->event.pressed) {
                 SEND_STRING(SS_LALT(SS_LCTL(SS_TAP(X_N))) SS_DELAY(100) SS_TAP(X_KP_0)  SS_DELAY(100) SS_TAP(X_ENTER));
             }
@@ -312,6 +313,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             // insert alt code Ç
             if (record->event.pressed) {
                 SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_2) SS_TAP(X_KP_8) ));
+            }
+            break;
+
+
+        case ST_MACRO_106:
+            // macro sublime pastry from 1
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_LCTL(SS_TAP(X_N))) SS_DELAY(100) SS_TAP(X_KP_1)  SS_DELAY(100) SS_TAP(X_ENTER));
             }
             break;
 
