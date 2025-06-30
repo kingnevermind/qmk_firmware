@@ -16,6 +16,7 @@ NKRO_ENABLE = no            # Enable N-Key Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
 AUDIO_ENABLE = no           # Audio output
+TAP_DANCE_ENABLE = yes		# Enable tap dance
 
 CUSTOM_MATRIX = lite
 
@@ -24,18 +25,4 @@ SRC += matrix.c
 SRC += board.c
 QUANTUM_LIB_SRC += i2c_master.c
 
-
-
-
-# DYNAMIC_MACRO_ENABLE = yes
-# TAP_DANCE_ENABLE = yes
-# COMBO_ENABLE = yes
-
-# CONSOLE_ENABLE = no
-# COMMAND_ENABLE = no
-# AUDIO_ENABLE = no
-# MOUSEKEY_ENABLE = no
-# DYNAMIC_MACRO_ENABLE = yes
-# TAP_DANCE_ENABLE = yes
-# COMBO_ENABLE = yes
 
