@@ -34,10 +34,10 @@ enum layer_number {
 enum macro_keycodes {
     ST_MACRO_100 = SAFE_RANGE,      // macro autohotkey insert date & time
     ST_MACRO_101,                   // macro autohotkey insert date
-    ST_MACRO_102,                   // insert alt code for É
+    ST_MACRO_102,                   // insert alt code for upper e-acute
     ST_MACRO_103,                   // macro sublime pastry from 0
-    ST_MACRO_104,                   // insert alt code ±
-    ST_MACRO_105,                   // insert alt code Ç
+    ST_MACRO_104,                   // insert alt code +/-
+    ST_MACRO_105,                   // insert alt code upper C-cedilla
     ST_MACRO_106,                   // macro sublime pastry from 1
     ST_MACRO_600,                   // macro sublime fold level 1
     ST_MACRO_601,                   // macro sublime fold level 2
@@ -72,9 +72,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 {
 
     // +-----------------------------------------+      +-----------------------------------------+
-    // | ESC  |  Q   |  W   |  F   |  P   |  B   |      |  J   |  L   |  U   |  Y   |  É   | BSPC |
+    // | ESC  |  Q   |  W   |  F   |  P   |  B   |      |  J   |  L   |  U   |  Y   | e-ac | BSPC |
     // |------------------------------------------      ------------------------------------------|
-    // | TAB  |  A   |  R   |  S   |  T   |  G   |      |  H   |  N       |  E   |  I   |  O   | ENT  |
+    // | TAB  |  A   |  R   |  S   |  T   |  G   |      |  H   |  N   |  E   |  I   |  O   | ENT  |
     // |------------------------------------------      ------------------------------------------|
     // | LSFT |  Z   |  X   |  C   |  D   |  V   |      |  K   |  M   |  ,   |  .   |  UP  |  ;   |
     // |------------------------------------------      ------------------------------------------|
@@ -91,11 +91,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
 
     // +-----------------------------------------+      +-----------------------------------------+
-    // | ESC  |      | date | date |      |      |      |  §   |  °   |  $   |  €   |  É   | BSPC |
+    // | ESC  |      | date | date |      |      |      | para | deg  |dolar | euro | E-ac | BSPC |
     // |------------------------------------------      ------------------------------------------|
-    // | TAB  |  @   |pastry|pastry|  ^Z  |      |      |  ±   |  !   |  ?   |  #   |  \   | ENT  |
+    // | TAB  |  @   |pastry|pastry|  ^Z  |      |      |  +/- |  !   |  ?   |  #   |  \   | ENT  |
     // |------------------------------------------      ------------------------------------------|
-    // | LSFT |  ¨   |      |  Ç   |  ^Y  |      |      |  µ   |  ~   |  &   |  |   |  UP  | GRV  |
+    // | LSFT |trema |      |C-ced |  ^Y  |      |      |  mu  |  ~   |  &   |  |   |  UP  | GRV  |
     // |------------------------------------------      ------------------------------------------|
     // |      | LCTL | LALT | LGUI | LOW  | SPC  |      | SPC  | RAIS | DEL  | LEFT | DOWN | RGHT |
     // +-----------------------------------------+      +-----------------------------------------+
@@ -110,11 +110,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
 
     // +-----------------------------------------+      +-----------------------------------------+
-    // | ESC  |  :   |  '   |  "   |  +   |      |      |      |  7  [E] 8  [F] 9   |  è   | BSPC |
+    // | ESC  |  :   |  '   |  "   |  +   |      |      |      |  7  [E] 8  [F] 9   |e-grv | BSPC |
     // |------------------------------------------      ------------------------------------------|
-    // | TAB  |  à   |  -   |  *   |  .   |  =   |      |  _   |  4  [C] 5  [D] 6   |  0   | ENT  |
+    // | TAB  | a-ac |  -   |  *   |  .   |  =   |      |  _   |  4  [C] 5  [D] 6   |  0   | ENT  |
     // |------------------------------------------      ------------------------------------------|
-    // | CAP  |  ^   |  ù   |  ç   |  /   | <{[( |      | )]}> |  1  [A] 2  [B] 3   |  .   |  %   |
+    // | CAP  |  ^   | u-ac |c-ced |  /   | <{[( |      | )]}> |  1  [A] 2  [B] 3   |  .   |  %   |
     // |------------------------------------------      ------------------------------------------|
     // |      | LCTL | LALT | LGUI | LOW  | SPC  |      | SPC  | RAIS | DEL  |      |      |      |
     // +-----------------------------------------+      +-----------------------------------------+
@@ -213,7 +213,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     // |------------------------------------------      ------------------------------------------|
     // |      |      |      |      |      |      |      |      |      |      |      |      |      |
     // +-----------------------------------------+      +-----------------------------------------+
-
 
     [_GREEK] = LAYOUT(
           KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, ST_MACRO_700,    ST_MACRO_701,   ST_MACRO_702,   KC_NO,          KC_NO,
@@ -317,7 +316,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             break;
 
         case ST_MACRO_102:
-            // insert alt code for É
+            // insert alt code for upper e-acute
             if (record->event.pressed) {
                 SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_4) SS_TAP(X_KP_4) ));
             }
@@ -333,7 +332,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
 
         case ST_MACRO_104:
-            // insert alt code ±
+            // insert alt code +/-
             if (record->event.pressed) {
                 SEND_STRING(SS_LALT(SS_TAP(X_KP_2) SS_TAP(X_KP_4) SS_TAP(X_KP_1) ));
             }
@@ -341,7 +340,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
 
         case ST_MACRO_105:
-            // insert alt code Ç
+            // insert alt code for C-cedilla
             if (record->event.pressed) {
                 SEND_STRING(SS_LALT(SS_TAP(X_KP_1) SS_TAP(X_KP_2) SS_TAP(X_KP_8) ));
             }
@@ -499,10 +498,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 
 
 
-
 // /////////////////////////////////////////////////////////////////////////////
 // TAP DANSE : General Definitions
 // /////////////////////////////////////////////////////////////////////////////
+
 
 
 typedef struct {
