@@ -27,6 +27,7 @@ enum layer_number {
     _FUNCTION,  // 4
     _ARROWS,    // 5
     _SUBLIME,   // 6
+    _GREEK,     // 7
 };
 
 
@@ -42,6 +43,16 @@ enum macro_keycodes {
     ST_MACRO_601,                   // macro sublime fold level 2
     ST_MACRO_602,                   // macro sublime fold level 3
     ST_MACRO_603,                   // macro sublime fold level 0
+    ST_MACRO_700,                   // insert greek letter delta
+    ST_MACRO_701,                   // insert greek letter lambda
+    ST_MACRO_702,                   // insert greek letter omega
+    ST_MACRO_703,                   // insert greek letter phi
+    ST_MACRO_704,                   // insert greek letter Delta
+    ST_MACRO_705,                   // insert greek letter pi
+    ST_MACRO_706,                   // insert greek letter Omega
+    ST_MACRO_707,                   // insert greek letter alpha
+    ST_MACRO_708,                   // insert greek letter beta
+    ST_MACRO_709,                   // insert greek letter gamma
     ST_MACRO_COMBO_007,             // macro screen lock, kvm switch & screen lock
     ST_MACRO_COMBO_008,             // insert non-breaking space
     ST_MACRO_COMBO_009,             // insert narrow non-breaking space
@@ -71,10 +82,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     // +-----------------------------------------+      +-----------------------------------------+
 
     [_BASE] = LAYOUT(
-        KC_ESC,        FR_Q,    FR_W,    LT(_ARROWS,KC_F),        LT(_SUBLIME,KC_P),    KC_B,   KC_J,        KC_L,              KC_U,                 KC_Y,    FR_EACU, KC_BSPC,
-        KC_TAB,        FR_A,    KC_R,    KC_S,                    KC_T,                 KC_G,   KC_H,        KC_N,              KC_E,                 KC_I,    KC_O,    KC_ENT,
-        OSM(MOD_LSFT), FR_Z,    KC_X,    MT(MOD_LCTL,KC_C),       MT(MOD_LSFT,KC_D),    KC_V,   KC_K,        MT(MOD_RSFT,FR_M), MT(MOD_LCTL,FR_COMM), FR_DOT,  KC_UP,   FR_SCLN,
-        MO(_FUNCTION), KC_LCTL, KC_LALT, KC_LGUI,                 MO(_LOWER),           KC_SPC, KC_SPC,      MO(_RAISE),        KC_DELETE,            KC_LEFT, KC_DOWN, KC_RGHT
+        KC_ESC,        FR_Q,    FR_W,    LT(_ARROWS,KC_F),        LT(_SUBLIME,KC_P),    LT(_GREEK,KC_B),    KC_J,   KC_L,              KC_U,                 KC_Y,    FR_EACU, KC_BSPC,
+        KC_TAB,        FR_A,    KC_R,    KC_S,                    KC_T,                 KC_G,               KC_H,   KC_N,              KC_E,                 KC_I,    KC_O,    KC_ENT,
+        OSM(MOD_LSFT), FR_Z,    KC_X,    MT(MOD_LCTL,KC_C),       MT(MOD_LSFT,KC_D),    KC_V,               KC_K,   MT(MOD_RSFT,FR_M), MT(MOD_LCTL,FR_COMM), FR_DOT,  KC_UP,   FR_SCLN,
+        MO(_FUNCTION), KC_LCTL, KC_LALT, KC_LGUI,                 MO(_LOWER),           KC_SPC,             KC_SPC, MO(_RAISE),        KC_DELETE,            KC_LEFT, KC_DOWN, KC_RGHT
     ),
 
 
@@ -189,6 +200,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
           KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, ST_MACRO_600,        ST_MACRO_601,        ST_MACRO_602,          ST_MACRO_603,   KC_NO,
           KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,                 KC_NO,          KC_NO,
           KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,               KC_NO,                 KC_NO,          KC_NO
+    ),
+
+
+
+    // +-----------------------------------------+      +-----------------------------------------+
+    // |      |      |      |      |      |      |      |      |delta |lambda|omega |      |      |
+    // |------------------------------------------      ------------------------------------------|
+    // |      |      |      |      |      |      |      |      | phi  |Delta |  pi  |Omega |      |
+    // |------------------------------------------      ------------------------------------------|
+    // |      |      |      |      |      |      |      |      |alpha | beta |gamma |      |      |
+    // |------------------------------------------      ------------------------------------------|
+    // |      |      |      |      |      |      |      |      |      |      |      |      |      |
+    // +-----------------------------------------+      +-----------------------------------------+
+
+
+    [_GREEK] = LAYOUT(
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, ST_MACRO_700,    ST_MACRO_701,   ST_MACRO_702,   KC_NO,          KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, ST_MACRO_703,    ST_MACRO_704,   ST_MACRO_705,   ST_MACRO_706,   KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, ST_MACRO_707,    ST_MACRO_708,   ST_MACRO_709,   KC_NO,          KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,           KC_NO,          KC_NO,          KC_NO,          KC_NO
     ),
 
 };
@@ -353,6 +384,75 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             }
             break;
 
+        case ST_MACRO_700:
+            // insert greek letter delta
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_9) SS_TAP(X_KP_4) SS_TAP(X_KP_8) ));
+            }
+            break;
+
+        case ST_MACRO_701:
+            // insert greek letter lambda
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_9) SS_TAP(X_KP_5) SS_TAP(X_KP_5) ));
+            }
+            break;
+
+        case ST_MACRO_702:
+            // insert greek letter omega
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_9) SS_TAP(X_KP_6) SS_TAP(X_KP_9) ));
+            }
+            break;
+
+        case ST_MACRO_703:
+            // insert greek letter phi
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_9) SS_TAP(X_KP_8) SS_TAP(X_KP_1) ));
+            }
+            break;
+
+        case ST_MACRO_704:
+            // insert greek letter Delta
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_9) SS_TAP(X_KP_1) SS_TAP(X_KP_6) ));
+            }
+            break;
+
+        case ST_MACRO_705:
+            // insert greek letter pi
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_9) SS_TAP(X_KP_6) SS_TAP(X_KP_0) ));
+            }
+            break;
+
+        case ST_MACRO_706:
+            // insert greek letter Omega
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_9) SS_TAP(X_KP_3) SS_TAP(X_KP_7) ));
+            }
+            break;
+
+        case ST_MACRO_707:
+            // insert greek letter alpha
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_9) SS_TAP(X_KP_4) SS_TAP(X_KP_5) ));
+            }
+            break;
+
+        case ST_MACRO_708:
+            // insert greek letter beta
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_9) SS_TAP(X_KP_4) SS_TAP(X_KP_6) ));
+            }
+            break;
+
+        case ST_MACRO_709:
+            // insert greek letter gamma
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_9) SS_TAP(X_KP_4) SS_TAP(X_KP_7) ));
+            }
+            break;
 
         case ST_MACRO_COMBO_007:
             // macro screen lock, kvm switch & screen lock
