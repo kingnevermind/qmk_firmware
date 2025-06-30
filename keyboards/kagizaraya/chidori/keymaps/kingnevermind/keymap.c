@@ -41,6 +41,11 @@ enum macro_keycodes {
     ST_MACRO_601,                   // macro sublime fold level 2
     ST_MACRO_602,                   // macro sublime fold level 3
     ST_MACRO_603,                   // macro sublime fold level 0
+    ST_MACRO_COMBO_007,             // macro screen lock, kvm switch & screen lock
+    ST_MACRO_COMBO_008,             // insert non-breaking space
+    ST_MACRO_COMBO_009,             // insert narrow non-breaking space
+    ST_MACRO_COMBO_010,             // insert minus sign
+    ST_MACRO_COMBO_011,             // insert middle dot
 };
 
 
@@ -49,10 +54,6 @@ enum tap_dance_codes {
   DANCE_201,
   DANCE_500,
 };
-
-
-#define LOWER       MO(_LOWER)
-#define RAISE       MO(_RAISE)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
@@ -118,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     // +-----------------------------------------+      +-----------------------------------------+
     // | RST  |      |      |      | SCLK | NMLK |      |      |      |      |      |      |      |
     // |------------------------------------------      ------------------------------------------|
-    // |      |      |      |      |      |      |      |      |      |      |      |      |      |
+    // |      |      |      |      | ^!DEL|      |      |      |      |      |      |      |      |
     // |------------------------------------------      ------------------------------------------|
     // |      |      |      |      |      |      |      |      |      |      |      |      |      |
     // |------------------------------------------      ------------------------------------------|
@@ -126,10 +127,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     // +-----------------------------------------+      +-----------------------------------------+
 
     [_ADJUST] = LAYOUT(
-          RESET, KC_NO, KC_NO, KC_NO, KC_NUMLOCK,  KC_SCROLLLOCK, KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,       KC_NO,         KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,       KC_NO,         KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,       KC_NO,         KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO
+          RESET, KC_NO, KC_NO, KC_NO, KC_NUMLOCK,               KC_SCROLLLOCK, KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, LALT(LCTL(KC_DELETE)),    KC_NO,         KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                    KC_NO,         KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+          KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                    KC_NO,         KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO
     ),
 
 
@@ -154,11 +155,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
 
     // +-----------------------------------------+      +-----------------------------------------+
-    // |      |      |      |      |      |      |      | PGUP | HOME |  UP  | END  | ^F10 | BSPC |
+    // |      |      |      |      |      |      |      | PGUP | HOME |  UP  | END  | +F10 | BSPC |
     // |------------------------------------------      ------------------------------------------|
-    // |      |      |      |      | LSFT |      |      | PGDW | LEFT | DOWN | RGHT | !^T  | ENT  |
+    // |      |      |      |      | LSFT |      |      | PGDW | LEFT | DOWN | RGHT | ^+T  | ENT  |
     // |------------------------------------------      ------------------------------------------|
-    // |      |      |      |      | ALT  |      |      |  F2  |!PGUP |      |!PGDW | !^N  | !^W  |
+    // |      |      |      |      | ALT  |      |      |  F2  |^PGUP |      |^PGDW | ^+N  | ^+W  |
     // |------------------------------------------      ------------------------------------------|
     // |      |      |      |      |      | SPC  |      | SPC  | LCTL | SUBL |      |      |      |
     // +-----------------------------------------+      +-----------------------------------------+
@@ -221,6 +222,42 @@ bool led_update_user(led_t led_state)
 }
 
 
+// /////////////////////////////////////////////////////////////////////////////
+// COMBOS
+// /////////////////////////////////////////////////////////////////////////////
+
+
+
+const uint16_t PROGMEM combo_000[] = { KC_V, KC_K, COMBO_END };
+const uint16_t PROGMEM combo_001[] = { KC_KP_1, KC_KP_2, COMBO_END };
+const uint16_t PROGMEM combo_002[] = { KC_KP_4, KC_KP_5, COMBO_END };
+const uint16_t PROGMEM combo_003[] = { KC_KP_2, KC_KP_3, COMBO_END };
+const uint16_t PROGMEM combo_004[] = { KC_KP_5, KC_KP_6, COMBO_END };
+const uint16_t PROGMEM combo_005[] = { KC_KP_7, KC_KP_8, COMBO_END };
+const uint16_t PROGMEM combo_006[] = { KC_KP_8, KC_KP_9, COMBO_END };
+const uint16_t PROGMEM combo_007[] = { KC_UP, FR_SCLN, KC_RIGHT, KC_DOWN, COMBO_END };
+const uint16_t PROGMEM combo_008[] = { KC_KP_SLASH, KC_KP_1, COMBO_END };
+const uint16_t PROGMEM combo_009[] = { KC_KP_DOT, KC_KP_4, COMBO_END };
+const uint16_t PROGMEM combo_010[] = { KC_KP_ASTERISK, KC_KP_5, COMBO_END };
+const uint16_t PROGMEM combo_011[] = { FR_CCED, KC_KP_2, COMBO_END };
+
+
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(combo_000, LALT(LSFT(FR_SCLN))),
+    COMBO(combo_001, LSFT(FR_A)),
+    COMBO(combo_002, LSFT(KC_C)),
+    COMBO(combo_003, LSFT(KC_B)),
+    COMBO(combo_004, LSFT(KC_D)),
+    COMBO(combo_005, LSFT(KC_E)),
+    COMBO(combo_006, LSFT(KC_F)),
+    COMBO(combo_007, ST_MACRO_COMBO_007),
+    COMBO(combo_008, ST_MACRO_COMBO_008),
+    COMBO(combo_009, ST_MACRO_COMBO_009),
+    COMBO(combo_010, ST_MACRO_COMBO_010),
+    COMBO(combo_011, ST_MACRO_COMBO_011),
+};
+
+
 
 // /////////////////////////////////////////////////////////////////////////////
 // MACROS
@@ -232,7 +269,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
     switch (keycode)
     {
-
         case ST_MACRO_100:
             // macro autohotkey insert date & time
             if (record->event.pressed) {
@@ -305,6 +341,42 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
             // macro sublime fold level 0
             if (record->event.pressed) {
                 SEND_STRING(SS_LCTL(SS_TAP(X_K)) SS_DELAY(100) SS_LCTL(SS_TAP(X_KP_0)));
+            }
+            break;
+
+
+        case ST_MACRO_COMBO_007:
+            // macro screen lock, kvm switch & screen lock
+            if (record->event.pressed) {
+                SEND_STRING(SS_LGUI(SS_TAP(X_L)) SS_DELAY(100) SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_ENTER) SS_DELAY(100) SS_LGUI(SS_TAP(X_L)));
+            }
+            break;
+
+        case ST_MACRO_COMBO_008:
+            // insert non-breaking space
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_6) SS_TAP(X_KP_0) ));
+            }
+            break;
+
+        case ST_MACRO_COMBO_009:
+            // insert narrow non-breaking space
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_8) SS_TAP(X_KP_2) SS_TAP(X_KP_3) SS_TAP(X_KP_9) ));
+            }
+            break;
+
+        case ST_MACRO_COMBO_010:
+            // insert minus sign
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_8) SS_TAP(X_KP_7) SS_TAP(X_KP_2) SS_TAP(X_KP_2) ));
+            }
+            break;
+
+        case ST_MACRO_COMBO_011:
+            // insert middle dot
+            if (record->event.pressed) {
+                SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_1) SS_TAP(X_KP_8) SS_TAP(X_KP_3) ));
             }
             break;
 
@@ -643,30 +715,5 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [DANCE_500] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_500, dance_500_finished, dance_500_reset),
 };
 
-
-
-// /////////////////////////////////////////////////////////////////////////////
-// COMBOS
-// /////////////////////////////////////////////////////////////////////////////
-
-
-
-const uint16_t PROGMEM combo0[] = { KC_V, KC_K, COMBO_END};
-const uint16_t PROGMEM combo1[] = { KC_KP_1, KC_KP_2, COMBO_END};
-const uint16_t PROGMEM combo2[] = { KC_KP_4, KC_KP_5, COMBO_END};
-const uint16_t PROGMEM combo3[] = { KC_KP_2, KC_KP_3, COMBO_END};
-const uint16_t PROGMEM combo4[] = { KC_KP_5, KC_KP_6, COMBO_END};
-const uint16_t PROGMEM combo5[] = { KC_KP_7, KC_KP_8, COMBO_END};
-const uint16_t PROGMEM combo6[] = { KC_KP_8, KC_KP_9, COMBO_END};
-
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO(combo0, LALT(LSFT(FR_SCLN))),
-    COMBO(combo1, LSFT(FR_A)),
-    COMBO(combo2, LSFT(KC_C)),
-    COMBO(combo3, LSFT(KC_B)),
-    COMBO(combo4, LSFT(KC_D)),
-    COMBO(combo5, LSFT(KC_E)),
-    COMBO(combo6, LSFT(KC_F)),
-};
 
 
