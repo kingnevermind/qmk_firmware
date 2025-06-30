@@ -54,18 +54,16 @@ enum tap_dance_codes {
 #define LOWER       MO(_LOWER)
 #define RAISE       MO(_RAISE)
 
-#define TODO        KC_NO
 
-// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 {
 
     // +-----------------------------------------+      +-----------------------------------------+
-    // | ESC  |  Q   |  W   |  F * |  P * |  B   |      |  J   |  L   |  U   |  Y   |  É   | BSPC |
+    // | ESC  |  Q   |  W   |  F   |  P   |  B   |      |  J   |  L   |  U   |  Y   |  É   | BSPC |
     // |------------------------------------------      ------------------------------------------|
-    // | TAB  |  A   |  R   |  S   |  T   |  G   |      |  H   |  N   |  E   |  I   |  O   | ENT  |
+    // | TAB  |  A   |  R   |  S   |  T   |  G   |      |  H   |  N       |  E   |  I   |  O   | ENT  |
     // |------------------------------------------      ------------------------------------------|
-    // | LSFT |  Z   |  X   |  C * |  D * |  V   |      |  K   |  M   |  ,   |  .   |  UP  |  ;   |
+    // | LSFT |  Z   |  X   |  C   |  D   |  V   |      |  K   |  M   |  ,   |  .   |  UP  |  ;   |
     // |------------------------------------------      ------------------------------------------|
     // | FUNC | LCTL | LALT | LGUI | LOW  | SPC  |      | SPC  | RAIS | DEL  | LEFT | DOWN | RGHT |
     // +-----------------------------------------+      +-----------------------------------------+
@@ -646,5 +644,29 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 };
 
 
+
+// /////////////////////////////////////////////////////////////////////////////
+// COMBOS
+// /////////////////////////////////////////////////////////////////////////////
+
+
+
+const uint16_t PROGMEM combo0[] = { KC_V, KC_K, COMBO_END};
+const uint16_t PROGMEM combo1[] = { KC_KP_1, KC_KP_2, COMBO_END};
+const uint16_t PROGMEM combo2[] = { KC_KP_4, KC_KP_5, COMBO_END};
+const uint16_t PROGMEM combo3[] = { KC_KP_2, KC_KP_3, COMBO_END};
+const uint16_t PROGMEM combo4[] = { KC_KP_5, KC_KP_6, COMBO_END};
+const uint16_t PROGMEM combo5[] = { KC_KP_7, KC_KP_8, COMBO_END};
+const uint16_t PROGMEM combo6[] = { KC_KP_8, KC_KP_9, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(combo0, LALT(LSFT(FR_SCLN))),
+    COMBO(combo1, LSFT(FR_A)),
+    COMBO(combo2, LSFT(KC_C)),
+    COMBO(combo3, LSFT(KC_B)),
+    COMBO(combo4, LSFT(KC_D)),
+    COMBO(combo5, LSFT(KC_E)),
+    COMBO(combo6, LSFT(KC_F)),
+};
 
 
