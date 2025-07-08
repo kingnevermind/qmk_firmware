@@ -39,6 +39,8 @@ enum macro_keycodes {
     ST_MACRO_104,                   // insert alt code +/-
     ST_MACRO_105,                   // insert alt code upper C-cedilla
     ST_MACRO_106,                   // macro sublime pastry from 1
+    ST_MACRO_400,                   // macro switch kvm keyboard and screen
+    ST_MACRO_401,                   // macro switch kvm screen only
     ST_MACRO_600,                   // macro sublime fold level 1
     ST_MACRO_601,                   // macro sublime fold level 2
     ST_MACRO_602,                   // macro sublime fold level 3
@@ -148,9 +150,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
 
     // +-----------------------------------------+      +-----------------------------------------+
-    // |      |  F7  |  F8  |  F9  | F12  |      |      |      |      |      |      |      | PSCR |
+    // | KVM  |  F7  |  F8  |  F9  | F12  |      |      |      |      |      |      |      | PSCR |
     // |------------------------------------------      ------------------------------------------|
-    // |      |  F4  |  F5  |  F6  | F11  |      |      |      |      |      |      |      |      |
+    // | KVM  |  F4  |  F5  |  F6  | F11  |      |      |      |      |      |      |      |      |
     // |------------------------------------------      ------------------------------------------|
     // | LSFT |  F1  |  F2  |  F3  | F10  |      |      |      |      |      | PLAY | VOL+ | MUTE |
     // |------------------------------------------      ------------------------------------------|
@@ -158,10 +160,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     // +-----------------------------------------+      +-----------------------------------------+
 
     [_FUNCTION] = LAYOUT(
-        KC_NO,   KC_F7,   KC_F8,   KC_F9,   KC_F12, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,             KC_PSCREEN,
-        KC_NO,   KC_F4,   KC_F5,   KC_F6,   KC_F11, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,             KC_NO,
-        KC_LSFT, KC_F1,   KC_F2,   KC_F3,   KC_F10, KC_NO, KC_NO, KC_NO, KC_NO, KC_MEDIA_PLAY_PAUSE, KC_AUDIO_VOL_UP,   KC_AUDIO_MUTE,
-        KC_NO,   KC_LCTL, KC_LALT, KC_LGUI, KC_NO,  KC_NO, KC_NO, KC_NO, KC_NO, KC_MEDIA_PREV_TRACK, KC_AUDIO_VOL_DOWN, KC_MEDIA_NEXT_TRACK
+        ST_MACRO_400,   KC_F7,   KC_F8,   KC_F9,   KC_F12, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,             KC_PSCREEN,
+        ST_MACRO_401,   KC_F4,   KC_F5,   KC_F6,   KC_F11, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,             KC_NO,
+        KC_LSFT,        KC_F1,   KC_F2,   KC_F3,   KC_F10, KC_NO, KC_NO, KC_NO, KC_NO, KC_MEDIA_PLAY_PAUSE, KC_AUDIO_VOL_UP,   KC_AUDIO_MUTE,
+        KC_NO,          KC_LCTL, KC_LALT, KC_LGUI, KC_NO,  KC_NO, KC_NO, KC_NO, KC_NO, KC_MEDIA_PREV_TRACK, KC_AUDIO_VOL_DOWN, KC_MEDIA_NEXT_TRACK
     ),
 
 
@@ -353,6 +355,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
                 SEND_STRING(SS_LALT(SS_LCTL(SS_TAP(X_N))) SS_DELAY(100) SS_TAP(X_KP_1)  SS_DELAY(100) SS_TAP(X_ENTER));
             }
             break;
+
+
+        case ST_MACRO_400:
+            // macro switch kvm keyboard and screen
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_ENTER));
+            }
+            break;
+
+        case ST_MACRO_401:
+            // macro switch kvm screen only
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_U) SS_DELAY(100) SS_TAP(X_ENTER));
+            }
+            break;
+
 
         case ST_MACRO_600:
             // macro sublime fold level 1
