@@ -93,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
 
     // +-----------------------------------------+      +-----------------------------------------+
-    // | ESC  |      | date | date |      |      |      | para | deg  |dolar | euro | E-ac | BSPC |
+    // | ESC  |      |      | date | date |      |      | para | deg  |dolar | euro | E-ac | BSPC |
     // |------------------------------------------      ------------------------------------------|
     // | TAB  |  @   |pastry|pastry|  ^Z  |      |      |  +/- |  !   |  ?   |  #   |  \   | ENT  |
     // |------------------------------------------      ------------------------------------------|
@@ -103,10 +103,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     // +-----------------------------------------+      +-----------------------------------------+
 
     [_LOWER] = LAYOUT(
-        KC_ESC,  KC_NO,   ST_MACRO_100, ST_MACRO_101,   KC_NO,      KC_NO,  FR_SECT,        FR_DEG,     FR_DLR,     FR_EURO,    ST_MACRO_102,   KC_BSPC,
-        KC_TAB,  FR_AT,   ST_MACRO_106, ST_MACRO_103,   LCTL(FR_Z), KC_NO,  ST_MACRO_104,   FR_EXLM,    FR_QUES,    FR_HASH,    FR_BSLS,        KC_ENT,
-        KC_LSFT, FR_DIAE, KC_NO,        ST_MACRO_105,   LCTL(KC_Y), KC_NO,  FR_MICR,        FR_TILD,    FR_AMPR,    FR_PIPE,    KC_UP,          FR_GRV,
-        KC_NO,   KC_LCTL, KC_LALT,      KC_LGUI,        MO(_LOWER), KC_SPC, KC_SPC,         MO(_RAISE), KC_DELETE,  KC_LEFT,    KC_DOWN,        KC_RGHT
+        KC_ESC,  KC_NO,   KC_NO,        ST_MACRO_100,   ST_MACRO_101,   KC_NO,  FR_SECT,        FR_DEG,     FR_DLR,     FR_EURO,    ST_MACRO_102,   KC_BSPC,
+        KC_TAB,  FR_AT,   ST_MACRO_106, ST_MACRO_103,   LCTL(FR_Z),     KC_NO,  ST_MACRO_104,   FR_EXLM,    FR_QUES,    FR_HASH,    FR_BSLS,        KC_ENT,
+        KC_LSFT, FR_DIAE, KC_NO,        ST_MACRO_105,   LCTL(KC_Y),     KC_NO,  FR_MICR,        FR_TILD,    FR_AMPR,    FR_PIPE,    KC_UP,          FR_GRV,
+        KC_NO,   KC_LCTL, KC_LALT,      KC_LGUI,        MO(_LOWER),     KC_SPC, KC_SPC,         MO(_RAISE), KC_DELETE,  KC_LEFT,    KC_DOWN,        KC_RGHT
     ),
 
 
