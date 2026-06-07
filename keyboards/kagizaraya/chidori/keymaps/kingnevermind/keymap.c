@@ -114,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     [_RAISE] = LAYOUT(
         KC_ESC,      FR_COLN, FR_QUOT,     FR_DQUO,        KC_KP_PLUS,  KC_NO,          KC_NO,          KC_KP_7,      KC_KP_8,    KC_KP_9,  FR_EGRV,   KC_BSPC,
         KC_TAB,      FR_AGRV, KC_KP_MINUS, KC_KP_ASTERISK, KC_KP_DOT,   KC_EQUAL,       FR_UNDS,        KC_KP_4,      KC_KP_5,    KC_KP_6,  KC_KP_0,   KC_ENT,
-        KC_CAPSLOCK, FR_CIRC, FR_UGRV,     FR_CCED,        KC_KP_SLASH, TD(DANCE_200),  TD(DANCE_201),  KC_KP_1,      KC_KP_2,    KC_KP_3,  KC_KP_DOT, FR_PERC,
+        KC_CAPS_LOCK, FR_CIRC, FR_UGRV,     FR_CCED,        KC_KP_SLASH, TD(DANCE_200),  TD(DANCE_201),  KC_KP_1,      KC_KP_2,    KC_KP_3,  KC_KP_DOT, FR_PERC,
         KC_NO,       KC_LCTL, KC_LALT,     KC_LGUI,        MO(_LOWER),  KC_SPC,         KC_SPC,         MO(_RAISE),   KC_DELETE,  KC_NO,    KC_NO,     KC_NO
     ),
 
@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     // +-----------------------------------------+      +-----------------------------------------+
 
     [_ADJUST] = LAYOUT(
-          RESET, KC_NO, KC_NO, KC_NO, KC_NUMLOCK,               KC_SCROLLLOCK, KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
+          QK_BOOT, KC_NO, KC_NO, KC_NO, KC_NUM_LOCK,               KC_SCROLL_LOCK, KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
           KC_NO, KC_NO, KC_NO, KC_NO, LALT(LCTL(KC_DELETE)),    KC_NO,         KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
           KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                    KC_NO,         KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
           KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                    KC_NO,         KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO
@@ -150,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
     // +-----------------------------------------+      +-----------------------------------------+
 
     [_FUNCTION] = LAYOUT(
-        ST_MACRO_400,   KC_F7,   KC_F8,   KC_F9,   KC_F12, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,             KC_PSCREEN,
+        ST_MACRO_400,   KC_F7,   KC_F8,   KC_F9,   KC_F12, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,             KC_PSCR,
         ST_MACRO_401,   KC_F4,   KC_F5,   KC_F6,   KC_F11, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,               KC_NO,             KC_NO,
         KC_LSFT,        KC_F1,   KC_F2,   KC_F3,   KC_F10, KC_NO, KC_NO, KC_NO, KC_NO, KC_MEDIA_PLAY_PAUSE, KC_AUDIO_VOL_UP,   KC_AUDIO_MUTE,
         KC_NO,          KC_LCTL, KC_LALT, KC_LGUI, KC_NO,  KC_NO, KC_NO, KC_NO, KC_NO, KC_MEDIA_PREV_TRACK, KC_AUDIO_VOL_DOWN, KC_MEDIA_NEXT_TRACK
@@ -170,9 +170,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
     [_ARROWS] = LAYOUT(
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_NO,   KC_PGUP,   KC_HOME,       KC_UP,            KC_END,             LSFT(KC_F10),       KC_BSPC,
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_LSHIFT, KC_NO,   KC_PGDOWN, KC_LEFT,       KC_DOWN,          KC_RIGHT,           LCTL(LSFT(KC_T)),   KC_ENT,
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_LALT,   KC_NO,   KC_F2,     LCTL(KC_PGUP), KC_NO,            LCTL(KC_PGDOWN),    LCTL(LSFT(KC_N)),   LCTL(LSFT(FR_W)),
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_SPC,  KC_SPC,    KC_LCTRL,      TD(DANCE_500),    KC_NO,              KC_NO,              KC_NO
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_LSFT, KC_NO,   KC_PGDN, KC_LEFT,       KC_DOWN,          KC_RIGHT,           LCTL(LSFT(KC_T)),   KC_ENT,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_LALT,   KC_NO,   KC_F2,     LCTL(KC_PGUP), KC_NO,            LCTL(KC_PGDN),    LCTL(LSFT(KC_N)),   LCTL(LSFT(FR_W)),
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_SPC,  KC_SPC,    KC_LCTL,      TD(DANCE_500),    KC_NO,              KC_NO,              KC_NO
     ),
 
 
@@ -278,7 +278,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case ST_MACRO_100:
             // macro autohotkey insert date & time
             if (record->event.pressed) {
-                SEND_STRING(SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_SCOLON) SS_DELAY(100) SS_TAP(X_D) SS_DELAY(100) SS_TAP(X_H) SS_DELAY(100) SS_TAP(X_SCOLON));
+                SEND_STRING(SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_SCLN) SS_DELAY(100) SS_TAP(X_D) SS_DELAY(100) SS_TAP(X_H) SS_DELAY(100) SS_TAP(X_SCLN));
             }
             break;
 
@@ -286,7 +286,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case ST_MACRO_101:
             // macro autohotkey insert date
             if (record->event.pressed) {
-                SEND_STRING(SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_SCOLON) SS_DELAY(100) SS_TAP(X_D) SS_DELAY(100) SS_TAP(X_8) SS_DELAY(100) SS_TAP(X_8));
+                SEND_STRING(SS_TAP(X_Y) SS_DELAY(100) SS_TAP(X_SCLN) SS_DELAY(100) SS_TAP(X_D) SS_DELAY(100) SS_TAP(X_8) SS_DELAY(100) SS_TAP(X_8));
             }
             break;
 
@@ -301,7 +301,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case ST_MACRO_103:
             // macro sublime pastry from 0
             if (record->event.pressed) {
-                SEND_STRING(SS_LALT(SS_LCTL(SS_TAP(X_N))) SS_DELAY(100) SS_TAP(X_KP_0)  SS_DELAY(100) SS_TAP(X_ENTER));
+                SEND_STRING(SS_LALT(SS_LCTL(SS_TAP(X_N))) SS_DELAY(100) SS_TAP(X_KP_0)  SS_DELAY(100) SS_TAP(X_ENT));
             }
             break;
 
@@ -325,7 +325,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case ST_MACRO_106:
             // macro sublime pastry from 1
             if (record->event.pressed) {
-                SEND_STRING(SS_LALT(SS_LCTL(SS_TAP(X_N))) SS_DELAY(100) SS_TAP(X_KP_1)  SS_DELAY(100) SS_TAP(X_ENTER));
+                SEND_STRING(SS_LALT(SS_LCTL(SS_TAP(X_N))) SS_DELAY(100) SS_TAP(X_KP_1)  SS_DELAY(100) SS_TAP(X_ENT));
             }
             break;
 
@@ -333,14 +333,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case ST_MACRO_400:
             // macro switch kvm keyboard and screen
             if (record->event.pressed) {
-                SEND_STRING(SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_ENTER));
+                SEND_STRING(SS_TAP(X_SCROLL_LOCK) SS_DELAY(100) SS_TAP(X_SCROLL_LOCK) SS_DELAY(100) SS_TAP(X_ENT));
             }
             break;
 
         case ST_MACRO_401:
             // macro switch kvm screen only
             if (record->event.pressed) {
-                SEND_STRING(SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_U) SS_DELAY(100) SS_TAP(X_ENTER));
+                SEND_STRING(SS_TAP(X_SCROLL_LOCK) SS_DELAY(100) SS_TAP(X_SCROLL_LOCK) SS_DELAY(100) SS_TAP(X_U) SS_DELAY(100) SS_TAP(X_ENT));
             }
             break;
 
@@ -377,7 +377,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         case ST_MACRO_COMBO_007:
             // macro screen lock, kvm switch & screen lock
             if (record->event.pressed) {
-                SEND_STRING(SS_LGUI(SS_TAP(X_L)) SS_DELAY(100) SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_SCROLLLOCK) SS_DELAY(100) SS_TAP(X_ENTER) SS_DELAY(100) SS_LGUI(SS_TAP(X_L)));
+                SEND_STRING(SS_LGUI(SS_TAP(X_L)) SS_DELAY(100) SS_TAP(X_SCROLL_LOCK) SS_DELAY(100) SS_TAP(X_SCROLL_LOCK) SS_DELAY(100) SS_TAP(X_ENT) SS_DELAY(100) SS_LGUI(SS_TAP(X_L)));
             }
             break;
 
@@ -448,9 +448,9 @@ enum {
 
 
 static tap dance_state[17];
-uint8_t dance_step(qk_tap_dance_state_t *state);
+uint8_t dance_step(tap_dance_state_t *state);
 
-uint8_t dance_step(qk_tap_dance_state_t *state) {
+uint8_t dance_step(tap_dance_state_t *state) {
     if (state->count == 1) {
         if (state->interrupted || !state->pressed) return SINGLE_TAP;
         else return SINGLE_HOLD;
@@ -462,11 +462,11 @@ uint8_t dance_step(qk_tap_dance_state_t *state) {
     return MORE_TAPS;
 }
 
-void on_dance_200(qk_tap_dance_state_t *state, void *user_data);
-void dance_200_finished(qk_tap_dance_state_t *state, void *user_data);
-void dance_200_reset(qk_tap_dance_state_t *state, void *user_data);
+void on_dance_200(tap_dance_state_t *state, void *user_data);
+void dance_200_finished(tap_dance_state_t *state, void *user_data);
+void dance_200_reset(tap_dance_state_t *state, void *user_data);
 
-void on_dance_200(qk_tap_dance_state_t *state, void *user_data)
+void on_dance_200(tap_dance_state_t *state, void *user_data)
 {
     if( state->count == 3 )
     {
@@ -481,7 +481,7 @@ void on_dance_200(qk_tap_dance_state_t *state, void *user_data)
     }
 }
 
-void dance_200_finished(qk_tap_dance_state_t *state, void *user_data)
+void dance_200_finished(tap_dance_state_t *state, void *user_data)
 {
     dance_state[2].step = dance_step(state);
 
@@ -513,7 +513,7 @@ void dance_200_finished(qk_tap_dance_state_t *state, void *user_data)
     }
 }
 
-void dance_200_reset(qk_tap_dance_state_t *state, void *user_data)
+void dance_200_reset(tap_dance_state_t *state, void *user_data)
 {
     wait_ms(10);
 
@@ -554,11 +554,11 @@ void dance_200_reset(qk_tap_dance_state_t *state, void *user_data)
 
 
 
-void on_dance_201(qk_tap_dance_state_t *state, void *user_data);
-void dance_201_finished(qk_tap_dance_state_t *state, void *user_data);
-void dance_201_reset(qk_tap_dance_state_t *state, void *user_data);
+void on_dance_201(tap_dance_state_t *state, void *user_data);
+void dance_201_finished(tap_dance_state_t *state, void *user_data);
+void dance_201_reset(tap_dance_state_t *state, void *user_data);
 
-void on_dance_201(qk_tap_dance_state_t *state, void *user_data)
+void on_dance_201(tap_dance_state_t *state, void *user_data)
 {
     if( state->count == 3 )
     {
@@ -573,7 +573,7 @@ void on_dance_201(qk_tap_dance_state_t *state, void *user_data)
     }
 }
 
-void dance_201_finished(qk_tap_dance_state_t *state, void *user_data)
+void dance_201_finished(tap_dance_state_t *state, void *user_data)
 {
     dance_state[3].step = dance_step(state);
 
@@ -605,7 +605,7 @@ void dance_201_finished(qk_tap_dance_state_t *state, void *user_data)
     }
 }
 
-void dance_201_reset(qk_tap_dance_state_t *state, void *user_data)
+void dance_201_reset(tap_dance_state_t *state, void *user_data)
 {
     wait_ms(10);
 
@@ -646,11 +646,11 @@ void dance_201_reset(qk_tap_dance_state_t *state, void *user_data)
 
 
 
-void on_dance_500(qk_tap_dance_state_t *state, void *user_data);
-void dance_500_finished(qk_tap_dance_state_t *state, void *user_data);
-void dance_500_reset(qk_tap_dance_state_t *state, void *user_data);
+void on_dance_500(tap_dance_state_t *state, void *user_data);
+void dance_500_finished(tap_dance_state_t *state, void *user_data);
+void dance_500_reset(tap_dance_state_t *state, void *user_data);
 
-void on_dance_500(qk_tap_dance_state_t *state, void *user_data)
+void on_dance_500(tap_dance_state_t *state, void *user_data)
 {
     if( state->count == 3 )
     {
@@ -665,7 +665,7 @@ void on_dance_500(qk_tap_dance_state_t *state, void *user_data)
     }
 }
 
-void dance_500_finished(qk_tap_dance_state_t *state, void *user_data)
+void dance_500_finished(tap_dance_state_t *state, void *user_data)
 {
     dance_state[1].step = dance_step(state);
 
@@ -697,7 +697,7 @@ void dance_500_finished(qk_tap_dance_state_t *state, void *user_data)
     }
 }
 
-void dance_500_reset(qk_tap_dance_state_t *state, void *user_data)
+void dance_500_reset(tap_dance_state_t *state, void *user_data)
 {
     wait_ms(10);
 
@@ -738,7 +738,7 @@ void dance_500_reset(qk_tap_dance_state_t *state, void *user_data)
 
 
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [DANCE_200] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_200, dance_200_finished, dance_200_reset),
     [DANCE_201] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_201, dance_201_finished, dance_201_reset),
     [DANCE_500] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_500, dance_500_finished, dance_500_reset),
